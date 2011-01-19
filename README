@@ -1,0 +1,26 @@
+README for Maatkit-Ruby
+=======================
+
+Maatkit-Ruby is a gem providing a ruby interface to Maatkit open-source database utilities.
+
+To install, type 'gem install maatkit-ruby'
+
+Usage:
+
+      require 'rubygems'
+      require 'maatkit-ruby'
+
+      mkarchiver = Maatkit::Archiver.new
+      mkarchiver.source="h=oltp_server,D=test,t=tbl"
+      mkarchiver.dest="h=olap_server"
+      mkarchiver.file="/var/log/archive/%Y-%m-%d-%D.%t"
+      mkarchiver.where="1=1"
+      mkarchiver.limit=1000
+      mkarchiver.commit_each=true
+      mkarchiver.config
+ => "mk-archiver --source h=oltp_server,D=test,t=tbl --commit-each --limit 1000 --file /var/log/archive/%Y-%m-%d-%D.%t --where 1=1 --dest h=olap_server "
+      mkarchiver.start
+
+      mkerrorlog = Maatkit::ErrorLog.new
+      mkerrorlog.start("/var/log/mysql/mysqld.err")
+
